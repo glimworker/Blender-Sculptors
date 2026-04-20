@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blender Sculpture Design Course</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #667eea;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+        }
+        
+        .intro {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .intro h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .course-card {
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .course-card.beginner {
+            border-color: #48bb78;
+        }
+        
+        .course-card.beginner:hover {
+            border-color: #38a169;
+            background: #f0fff4;
+        }
+        
+        .course-card.intermediate {
+            border-color: #ecc94b;
+        }
+        
+        .course-card.intermediate:hover {
+            border-color: #d69e2e;
+            background: #fffff0;
+        }
+        
+        .course-card.advanced {
+            border-color: #f56565;
+        }
+        
+        .course-card.advanced:hover {
+            border-color: #e53e3e;
+            background: #fff5f5;
+        }
+        
+        .emoji {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .course-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .course-card .level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .beginner .level {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .intermediate .level {
+            background: #ecc94b;
+            color: #744210;
+        }
+        
+        .advanced .level {
+            background: #f56565;
+            color: white;
+        }
+        
+        .task-count {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #5568d3;
+        }
+        
+        .resources {
+            background: #fff9e6;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .resources h2 {
+            color: #d69e2e;
+            margin-bottom: 15px;
+        }
+        
+        .resource-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .resource-link {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #d69e2e;
+            font-weight: bold;
+            border: 2px solid #d69e2e;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            background: #d69e2e;
+            color: white;
+        }
+        
+        .tips {
+            background: #e6fffa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .tips h2 {
+            color: #319795;
+            margin-bottom: 15px;
+        }
+        
+        .tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tips li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .tips li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #319795;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Blender Sculpture Design Course</h1>
+            <p class="subtitle">Learn to Design Clay Sculptures in 3D</p>
+        </header>
+        
+        <div class="intro">
+            <h2>Welcome to Your Creative Journey!</h2>
+            <p>This course teaches you how to use Blender to design sculptures before you make them with real clay. Start with beginner tasks and work your way up to creating amazing, complex designs!</p>
+        </div>
+        
+        <div class="course-grid">
+            <a href="beginner.html" class="course-card beginner">
+                <div class="emoji">🌟</div>
+                <h3>Beginner</h3>
+                <span class="level">Start Here</span>
+                <p class="task-count">4 Tasks</p>
+                <p>Learn the basics of Blender navigation and simple sculpting. Perfect for complete beginners!</p>
+                <span class="cta-button">Start Learning</span>
+            </a>
+            
+            <a href="intermediate.html" class="course-card intermediate">
+                <div class="emoji">🚀</div>
+                <h3>Intermediate</h3>
+                <span class="level">Level Up</span>
+                <p class="task-count">10 Tasks</p>
+                <p>Combine your skills and learn advanced techniques. Create creatures, objects, and characters!</p>
+                <span class="cta-button">Continue Journey</span>
+            </a>
+            
+            <a href="advanced.html" class="course-card advanced">
+                <div class="emoji">⭐</div>
+                <h3>Advanced</h3>
+                <span class="level">Master Level</span>
+                <p class="task-count">6 Tasks</p>
+                <p>Create complex projects combining everything you've learned. Design like a pro!</p>
+                <span class="cta-button">Take Challenge</span>
+            </a>
+        </div>
+        
+        <div class="resources">
+            <h2>Additional Resources</h2>
+            <p>Need help with Blender controls? Check out our keyboard shortcuts guide!</p>
+            <div class="resource-links">
+                <a href="shortcuts.html" class="resource-link">Keyboard Shortcuts</a>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h2>Learning Tips</h2>
+            <ul>
+                <li>Start with beginner tasks - they build your foundation</li>
+                <li>Save your work often (Ctrl+S or Cmd+S)</li>
+                <li>Take breaks every 30 minutes</li>
+                <li>Don't be afraid to go backwards - review easier tasks if needed</li>
+                <li>Help your classmates - teaching others helps you learn</li>
+                <li>Complete at least 2-3 tasks from each level</li>
+                <li>Mistakes are part of learning - use Ctrl+Z and try again!</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p><strong>Remember:</strong> Every expert was once a beginner. Have fun and be creative!</p>
+        </footer>
+    </div>
+</body>
+</html>
