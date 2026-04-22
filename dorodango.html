@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of Dorodango — From Earth to Mirror</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #8B6914 0%, #5C4033 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+.container, .p-8, .p-6 {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #8B6914;
+    text-decoration: none;
+    font-weight: bold;
+}
+.back-link:hover { text-decoration: underline; }
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 4px solid #8B6914;
+}
+h1 { font-size: 2.5em; color: #5C4033; margin-bottom: 10px; }
+.subtitle, .text-lg { font-size: 1.2em; color: #666; }
+.bg-earth-light, .intro {
+    background: #faf5eb;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    border-left: 5px solid #8B6914;
+}
+.bg-earth-light h2, .intro h2 { color: #5C4033; margin-bottom: 15px; }
+.border-4 { border: 3px solid #8B6914; }
+.bg-white {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+.text-2xl { font-size: 1.8em; color: #5C4033; margin-bottom: 10px; }
+.italic { font-style: italic; color: #666; margin-bottom: 20px; }
+.bg-blue-50 { background: #dbeafe; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-green-50 { background: #f0fff4; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-yellow-50 { background: #fef3c7; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-purple-50 { background: #f3e8ff; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-red-50 { background: #fee2e2; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-gray-50 { background: #f3f4f6; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-earth { background: #faf5eb; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-clay { background: #f5ebe0; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.bg-sand { background: #fefcf3; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.font-bold { font-weight: bold; margin-bottom: 10px; font-size: 1.2em; }
+.list-disc { margin-left: 20px; }
+.list-decimal { margin-left: 20px; }
+li { margin-bottom: 8px; }
+.mb-8 { margin-bottom: 40px; }
+.mb-6 { margin-bottom: 30px; }
+.mb-4 { margin-bottom: 20px; }
+.mb-2 { margin-bottom: 10px; }
+.p-4, .p-6 { padding: 20px; }
+.rounded-lg { border-radius: 15px; }
+.space-y-1 > * + * { margin-top: 5px; }
+.stage-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.stage-number {
+    background: #5C4033;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+.stage-title {
+    font-size: 1.6em;
+    color: #5C4033;
+    font-weight: bold;
+}
+.timeline {
+    border-left: 3px solid #8B6914;
+    margin-left: 19px;
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+.quote-block {
+    background: #f5ebe0;
+    border-left: 4px solid #8B6914;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    border-radius: 0 10px 10px 0;
+}
+.quote-block .attribution {
+    font-style: normal;
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 8px;
+}
+.materials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+@media (max-width: 600px) {
+    .materials-grid { grid-template-columns: 1fr; }
+}
+.warning-box {
+    background: #fee2e2;
+    border-left: 4px solid #e53e3e;
+    padding: 15px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 15px 0;
+}
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
+    color: #666;
+}
+@media (max-width: 768px) {
+    .container, .p-8 { padding: 20px; }
+    h1 { font-size: 2em; }
+}
+@media print {
+    .page-break { page-break-before: always; }
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back-link">← Back to Course Home</a>
+<div class="p-8 max-w-4xl mx-auto bg-white">
+  <header class="text-center mb-8 border-b-4 pb-6">
+    <h1>The Art of Dorodango</h1>
+    <p class="text-2xl mb-4">From Earth to Mirror</p>
+    <p class="text-lg">A Complete Guide to Making Hikaru Dorodango — Shining Mud Balls</p>
+  </header>
+
+  <section class="mb-8 bg-earth-light p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">What is a Dorodango?</h2>
+    <p class="mb-4">Dorodango (泥だんご) means "mud dumpling" in Japanese. A <strong>hikaru dorodango</strong> — a <em>shining</em> mud ball — is an ordinary ball of earth, shaped by hand, dried with patience, and polished to an impossible shine. No glue. No varnish. Just dirt, water, time, and attention.</p>
+    <p class="mb-4">The practice was studied by Professor Fumio Kayo at Kyoto University of Education, who found that children making dorodango would become deeply absorbed in the process — pouring tremendous effort into shaping and polishing their spheres. The phenomenon became a sensation across Japanese nurseries and schools.</p>
+    <div class="quote-block">
+      "The dorodango doesn't argue with the hands. The mud doesn't fight what happened to it. Root stays in soil, leaves stay toward light."
+    </div>
+    <p>Making a dorodango teaches patience, attention, and the quiet satisfaction of transforming something ordinary into something beautiful. Every dorodango is unique — the colour, texture, and shine depend on the soil where you live.</p>
+  </section>
+
+  <section class="mb-8 bg-blue-50 p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">What You Will Need</h2>
+    <div class="materials-grid">
+      <div class="bg-white p-4 rounded-lg">
+        <h3 class="font-bold mb-2">Essential Materials</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Soil with good clay content</li>
+          <li>Water</li>
+          <li>A bucket or large bowl</li>
+          <li>A fine mesh sieve or old stocking</li>
+          <li>Plastic bags (resealable)</li>
+          <li>A soft cloth (denim or fine denier stockings work well)</li>
+        </ul>
+      </div>
+      <div class="bg-white p-4 rounded-lg">
+        <h3 class="font-bold mb-2">Optional (for advanced finishing)</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Window screen mesh for sifting</li>
+          <li>Mortar and pestle</li>
+          <li>Coloured clays (red, yellow, white)</li>
+          <li>Iron oxide pigment powders</li>
+          <li>Lime putty (slaked lime)</li>
+          <li>Protective gloves and dust mask</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warning-box">
+      <strong>Skin care:</strong> Clay leaches moisture from your skin. Wear gloves during extended sessions and moisturise your hands afterwards. The practice protects the practitioner.
+    </div>
+  </section>
+
+  <section class="mb-8 bg-yellow-50 p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">How to Test Your Soil</h2>
+    <p class="mb-4">Not all soil works equally well. You need soil with a good balance of clay and sand — too much clay and it cracks; too much sand and it crumbles.</p>
+    <div class="bg-white p-4 rounded-lg mb-4">
+      <h3 class="font-bold mb-2">The Grip Test</h3>
+      <p>Moisten a handful of soil and squeeze it firmly in your fist. Open your hand:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Perfect:</strong> You can see the lines of your palm and the shape of your fingers imprinted on the surface. The ball holds its shape without oozing.</li>
+        <li><strong>Too much clay:</strong> Mud squeezes out between your fingers. Add sandy soil to balance it.</li>
+        <li><strong>Too sandy:</strong> The ball crumbles immediately. Find soil with more clay, or try a different location.</li>
+      </ul>
+    </div>
+    <p>The colour of your finished dorodango depends entirely on your local soil. Red earth, grey clay, yellow sand — every region produces a different result. This is part of the beauty.</p>
+  </section>
+
+  <div class="page-break"></div>
+
+  <!-- STAGE 1 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">1</div>
+      <div class="stage-title">Digging and Preparing the Earth</div>
+    </div>
+    <p class="italic">Day 1 — Getting your hands dirty</p>
+
+    <div class="bg-earth p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Gathering</h4>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Find a spot with good soil — garden beds, fields, river banks, or construction sites often have rich clay. Avoid heavily polluted areas.</li>
+        <li>Dig below the surface layer. The top few centimetres contain roots, organic matter, and debris. The cleaner soil is 10–20cm down.</li>
+        <li>Collect more than you think you need — you will sift away a lot of material.</li>
+      </ol>
+    </div>
+
+    <div class="bg-clay p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Separating the Clay</h4>
+      <p class="mb-2">You need to remove stones, roots, twigs, and coarse sand. Two methods:</p>
+      <p class="mb-2"><strong>Dry sifting:</strong> Let the soil dry, break it up, and pass it through a fine mesh sieve. Keep the fine material. For even finer powder, use a window screen mesh or an old stocking stretched over a bowl.</p>
+      <p><strong>Water extraction:</strong> Add soil to a bucket of water. Stir vigorously and let it settle. Stones and heavy sand sink first. The fine clay stays suspended longest. Pour off the cloudy water into a second container. Let this settle fully, pour off the clear water, and spread the remaining clay to dry. This produces extremely pure, fine clay — ideal for capsule layers and finishing.</p>
+    </div>
+
+    <div class="bg-green-50 p-4 rounded-lg">
+      <h4 class="font-bold mb-2">💡 Tip</h4>
+      <p>Japanese children know secret spots where the finest soil collects naturally — under slides, beneath doormats, in sheltered corners of playgrounds. They call this ultra-fine dust <strong>sarasuna</strong>. When you blow on it, it flies away like smoke. That is the material you want for finishing.</p>
+    </div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">2</div>
+      <div class="stage-title">Forming the Core</div>
+    </div>
+    <p class="italic">Day 1–2 — Building the foundation</p>
+
+    <div class="bg-earth p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Making Mud</h4>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Add water to your sifted soil gradually, mixing as you go. Aim for the consistency of thick dough — firm enough to hold shape, wet enough to be workable.</li>
+        <li>Knead the mud thoroughly to remove air bubbles. Air pockets cause cracks later.</li>
+      </ol>
+    </div>
+
+    <div class="bg-clay p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Shaping</h4>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Take a handful of mud and begin forming a ball. Aim for roughly the size of a tennis ball — about 6–8cm diameter. Larger balls are harder to manage.</li>
+        <li>Squeeze gently to compress the material and push excess water to the surface.</li>
+        <li>Jostle and roll the ball between your palms. The gentle shaking distributes moisture evenly and reduces internal voids.</li>
+        <li>Keep shaping until the sphere is as round and smooth as you can make it. Fix any bumps or dents now — they will haunt you later.</li>
+      </ol>
+    </div>
+
+    <div class="warning-box">
+      <strong>Common mistake:</strong> Making the core too wet. If water drips freely from the ball, you have too much. Sprinkle dry soil onto the surface and keep shaping to absorb the excess.
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- STAGE 3 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">3</div>
+      <div class="stage-title">Building Layers</div>
+    </div>
+    <p class="italic">Days 2–5 — Patient, consistent attention</p>
+
+    <div class="bg-earth p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">The Capsule Technique</h4>
+      <p class="mb-2">Once your core is firm enough to hold its shape, you begin adding thin layers of progressively finer soil. This is the heart of the process.</p>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Pat your hand lightly against dry, sifted soil. A fine layer of dust will stick to your palm.</li>
+        <li>Gently rub this dust over the surface of the ball, using the outer curve of your thumb near its base.</li>
+        <li>The fresh dust absorbs surface moisture immediately. Work it in until the surface feels dry and powdery.</li>
+        <li>Repeat. And repeat. And repeat.</li>
+      </ol>
+    </div>
+
+    <div class="bg-sand p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">The Sauna — Drawing Moisture Out</h4>
+      <p class="mb-2">Between dusting sessions, the ball needs to "sweat":</p>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Place the ball in a sealed plastic bag on a soft surface (to prevent flat spots).</li>
+        <li>Wait 20–30 minutes. Moisture from inside the ball will condense on the inside of the bag and the surface will become wet again.</li>
+        <li>Remove the ball. Apply more fine dust. Work it in. Bag it again.</li>
+        <li>Repeat this cycle. Each time, the ball takes longer to sweat — it is drying from the inside out.</li>
+        <li>You can speed this up by placing the bagged ball in a refrigerator — but be careful not to over-chill. 20–30 minutes in the fridge for early sweats, up to 1–2 hours later in the process.</li>
+      </ol>
+    </div>
+
+    <div class="bg-green-50 p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">💡 The Dorodango Principle</h4>
+      <p>This stage cannot be rushed. Each layer must dry properly before the next is applied. Force it and cracks appear. Neglect it and cracks appear. The only way through is patient, consistent attention applied to something ordinary. There are no shortcuts.</p>
+    </div>
+
+    <div class="warning-box">
+      <strong>If cracks appear:</strong> Small cracks can be healed by moistening slightly and working fresh fine soil into the damaged area. But a badly neglected ball cannot be saved. Prevention is attention.
+    </div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">4</div>
+      <div class="stage-title">Drying to Leather-Hard</div>
+    </div>
+    <p class="italic">Days 5–8 — Learning to wait</p>
+
+    <div class="bg-earth p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">The Transition</h4>
+      <p class="mb-2">Continue the dust-and-bag cycle until the ball reaches what potters call "leather-hard" — firm to the touch, no longer cold and damp, but not yet bone-dry.</p>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>The surface should feel smooth and slightly waxy when you rub it.</li>
+        <li>Condensation in the bag takes longer and longer to appear — eventually it barely sweats at all.</li>
+        <li>The colour will lighten as moisture leaves.</li>
+        <li>At this stage, store the ball overnight in its bag in a cool, dry place on a soft surface.</li>
+      </ol>
+    </div>
+
+    <div class="bg-yellow-50 p-4 rounded-lg">
+      <h4 class="font-bold mb-2">How to Know It's Ready</h4>
+      <p>Tap the surface gently with your fingernail. A leather-hard dorodango produces a faint, almost hollow sound. If it sounds dead and dull, it is still too wet inside. If it rings slightly, it is ready for polishing.</p>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- STAGE 5 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">5</div>
+      <div class="stage-title">The Final Capsule Layer</div>
+    </div>
+    <p class="italic">Days 8–10 — The surface that will become the shine</p>
+
+    <div class="bg-earth p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Creating Ultra-Fine Dust</h4>
+      <p class="mb-2">The brilliance of a hikaru dorodango comes from this final layer of extremely fine particles. Two methods:</p>
+      <p class="mb-2"><strong>On-site method:</strong> Pat the dry soil lightly with your hand. The finest particles — the ones that cling to your skin like talc — are what you want. Rub these gently onto the ball's surface.</p>
+      <p><strong>Container method:</strong> Sift your finest soil into a sealed plastic container. Put the lid on and shake vigorously. Wait a few minutes for the dust to settle. Open the lid — extremely fine dust will be clinging to the sides. Rub this dust into the ball. Wear a dust mask if the seal is imperfect.</p>
+    </div>
+
+    <div class="bg-clay p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Applying the Layer</h4>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Apply the ultra-fine dust in thin, even coats.</li>
+        <li>Use the outer curvature of your thumb near its base — this gives the most even pressure.</li>
+        <li>Work the dust into the surface until all moisture has been absorbed and the ball feels powdery.</li>
+        <li>Continue until the surface is completely uniform with no visible variation in texture.</li>
+        <li>Do one final bag session. If any moisture appears on the surface afterward, apply one more coat of fine dust and work it in.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- STAGE 6 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">6</div>
+      <div class="stage-title">Polishing</div>
+    </div>
+    <p class="italic">Days 10–14 — Where the shine emerges</p>
+
+    <div class="bg-earth p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Hand Polishing</h4>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Begin by rubbing the surface gently with your bare hands in slow, circular motions.</li>
+        <li>If scratches or marks appear, the ball is still too wet inside. Stop. Bag it again. Wait. Try tomorrow.</li>
+        <li>If the surface responds — becomes smoother, begins to develop a subtle sheen — increase pressure gradually.</li>
+        <li>Polish for 10–20 minutes per session. Multiple sessions over several days produce better results than one marathon effort.</li>
+      </ol>
+    </div>
+
+    <div class="bg-sand p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Cloth Polishing</h4>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Once hand polishing produces a consistent low sheen, switch to a soft cloth.</li>
+        <li>Fine denier stockings and worn denim both work well — the texture matters.</li>
+        <li><strong>Start by polishing in straight lines</strong> (always in one direction), then <strong>finish by polishing in circles.</strong></li>
+        <li>Be gentle. The shine builds gradually. Forcing it — polishing too hard on a surface that is not ready — accelerates cracking rather than producing shine.</li>
+        <li>After each polishing session, the ball may lose some lustre overnight as residual internal moisture reaches the surface. This is normal. Polish again the next day. The shine returns stronger each time.</li>
+      </ol>
+    </div>
+
+    <div class="quote-block">
+      Polishing a dry surface makes it worse. Forcing it when conditions are not right accelerates the damage. The practice is patience, not pressure.
+    </div>
+
+    <div class="bg-green-50 p-4 rounded-lg">
+      <h4 class="font-bold mb-2">💡 When is it finished?</h4>
+      <p>A properly polished dorodango will reflect light and show a deep, warm lustre — not a plastic shine, but something more like polished stone or marble. It takes hours of polishing across several days. Each dorodango is different. The soil decides what the shine looks like.</p>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- STAGE 7 -->
+  <div class="bg-white border-4 p-6 rounded-lg mb-8">
+    <div class="stage-header">
+      <div class="stage-number">7</div>
+      <div class="stage-title">Master Finishing Techniques</div>
+    </div>
+    <p class="italic">For those who want to go further</p>
+
+    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Coloured Clay Capsule</h4>
+      <p class="mb-2">Master dorodango makers use coloured clays for their final capsule layers. The colour of the finished ball comes entirely from the outermost layer of material. Soils from different regions produce dramatically different results:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Red laterite clay</strong> — deep terracotta to rusty red (common in tropical and volcanic soils)</li>
+        <li><strong>White kaolin clay</strong> — pale, almost porcelain-like finish</li>
+        <li><strong>Yellow ochre</strong> — warm golden tones</li>
+        <li><strong>Grey river clay</strong> — cool, stone-like appearance</li>
+        <li><strong>Black clay / dark alluvial soil</strong> — deep, dramatic finish</li>
+      </ul>
+      <p class="mt-2">Collect interesting soils wherever you travel. The geological composition of each region gives different colours and textures — building a collection of source soils is part of the practice.</p>
+    </div>
+
+    <div class="bg-clay p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">Mineral Pigment Finishing</h4>
+      <p class="mb-2">Some advanced practitioners mix mineral pigments into their final capsule layer for richer or more controlled colour:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Iron oxide (red)</strong> — creates deep, warm red-brown tones. The most commonly used pigment.</li>
+        <li><strong>Iron oxide (yellow)</strong> — golden to amber finish.</li>
+        <li><strong>Iron oxide (black)</strong> — very dark, almost metallic appearance.</li>
+        <li><strong>Chromium oxide (green)</strong> — subtle green undertone.</li>
+        <li><strong>Ultramarine pigment</strong> — blue-grey tones (use sparingly).</li>
+      </ul>
+      <p class="mt-2">Mix a small amount of pigment powder with your finest sifted clay. Apply as a capsule layer in the same way as regular fine soil. The ratio is flexible — more pigment means stronger colour but potentially weaker bonding. Start conservatively.</p>
+    </div>
+
+    <div class="bg-sand p-4 rounded-lg mb-4">
+      <h4 class="font-bold mb-2">The Lime Plaster Method (Nuri Dango)</h4>
+      <p class="mb-2">Originated by Shinkichi Enomoto, a renowned Tokyo plasterer, this technique applies a thin lime-earth plaster veneer over the earthen core:</p>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Mix slaked lime putty with finely sifted coloured clay at roughly a 1:4 ratio (lime to clay).</li>
+        <li>Add water to achieve a thin, milkshake-like consistency.</li>
+        <li>Sift the mixture through an 80-mesh screen for an ultra-fine result.</li>
+        <li>Apply the lime-clay plaster to the leather-hard core as quickly and evenly as possible using a smooth plastic lid or your thumb.</li>
+        <li>Polish in the same way as a standard dorodango. The lime content makes the surface easier to polish and produces a particularly bright, almost luminous shine.</li>
+      </ol>
+      <div class="warning-box">
+        <strong>Safety:</strong> Lime is alkalite and irritates skin and eyes. Wear gloves when mixing lime plaster and avoid inhaling the dry powder. This technique is best for older, experienced students.
+      </div>
+    </div>
+
+    <div class="bg-green-50 p-4 rounded-lg">
+      <h4 class="font-bold mb-2">💡 The Master's Secret</h4>
+      <p>The finest dorodango are not the ones polished the hardest. They are the ones where every preceding stage was done with complete attention — the soil properly sifted, the core properly compressed, the moisture properly managed, every layer properly dried. The shine is not added at the end. The shine is what happens when every step before it was done right.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <section class="mb-8 bg-yellow-50 p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Two-Week Timeline</h2>
+    <div class="bg-white p-4 rounded-lg">
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Day 1:</strong> Gather soil, sift, test, prepare fine dust supply</li>
+        <li><strong>Days 1–2:</strong> Mix mud, form and compress core</li>
+        <li><strong>Days 2–5:</strong> Build capsule layers with dust-and-bag cycles</li>
+        <li><strong>Days 5–8:</strong> Continue drying to leather-hard state</li>
+        <li><strong>Days 8–10:</strong> Apply final ultra-fine capsule layer</li>
+        <li><strong>Days 10–14:</strong> Polish — hands first, then cloth</li>
+        <li><strong>Day 14:</strong> Final polish. Admire. Display.</li>
+      </ul>
+    </div>
+    <p class="mt-4"><em>Note: This timeline is approximate. Humidity, temperature, and soil type all affect drying times. In cold or damp conditions, allow extra days. The dorodango is ready when it is ready — not when the calendar says so.</em></p>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="mb-8 bg-red-50 p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Troubleshooting</h2>
+    <div class="bg-white p-4 rounded-lg mb-4">
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Cracks appearing:</strong> The ball dried too quickly or unevenly. Moisten slightly, work fine soil into the cracks, and slow down the drying process with more frequent bag sessions.</li>
+        <li><strong>Surface scratches during polishing:</strong> Still too wet inside. Stop polishing. Bag it. Wait at least a day.</li>
+        <li><strong>Won't shine:</strong> The final layer may be too coarse. Apply another capsule of finer material. Or the soil may simply need more polishing time.</li>
+        <li><strong>Flat spot:</strong> The ball rested on a hard surface while drying. Always place on something soft — a cloth, a glove, tissue paper.</li>
+        <li><strong>Crumbles apart:</strong> Not enough clay in the soil. Start again with better soil. The grip test matters.</li>
+        <li><strong>Lost lustre overnight:</strong> Internal moisture surfaced. This is normal in the first few days after polishing. Polish again — the shine will stabilise.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CARE -->
+  <section class="mb-8 bg-green-50 p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Caring for Your Finished Dorodango</h2>
+    <div class="bg-white p-4 rounded-lg">
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Display in a dry place away from direct sunlight and moisture.</li>
+        <li>A finished dorodango is surprisingly strong but will shatter if dropped on a hard floor.</li>
+        <li>Occasional gentle polishing with a soft cloth will maintain the shine.</li>
+        <li>Never varnish or seal it. The whole point is that the shine comes from the earth itself.</li>
+        <li>Over time, the surface may develop a gentle patina. This is natural and beautiful.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-8 bg-earth-light p-6 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Further Resources</h2>
+    <div class="bg-white p-4 rounded-lg">
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Book:</strong> <em>Dorodango: The Japanese Art of Making Mud Balls</em> by Bruce Gardner</li>
+        <li><strong>Web:</strong> dorodango.com — Bruce Gardner's guide and gallery</li>
+        <li><strong>Community:</strong> r/Dorodango on Reddit — share your work and learn from others</li>
+        <li><strong>Video:</strong> The Nito Project on YouTube — detailed video tutorials</li>
+        <li><strong>Research:</strong> Professor Fumio Kayo's methodology from Kyoto University of Education</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="mt-8 text-center text-sm text-gray-600 border-t-2 border-gray-300 pt-6">
+    <p class="font-bold text-lg mb-2">Every dorodango is unique. Every one teaches patience.</p>
+    <p>The only way through is consistent, skilled attention applied to something ordinary until something beautiful emerges.</p>
+  </footer>
+</div>
+</body>
+</html>
