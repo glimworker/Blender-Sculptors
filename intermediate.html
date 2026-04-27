@@ -1,214 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Tasks - Blender Sculpture Design Course</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #ecc94b 0%, #d69e2e 100%);
-    min-height: 100vh;
-    padding: 20px;
-}
-.container, .p-8, .p-6 {
-    max-width: 900px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-.back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: #d69e2e;
-    text-decoration: none;
-    font-weight: bold;
-}
-.back-link:hover { text-decoration: underline; }
-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 30px;
-    border-bottom: 4px solid #ecc94b;
-}
-h1 { font-size: 2.5em; color: #d69e2e; margin-bottom: 10px; }
-.subtitle, .text-lg { font-size: 1.2em; color: #666; }
-.bg-yellow-50, .intro {
-    background: #fffff0;
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    border-left: 5px solid #ecc94b;
-}
-.bg-yellow-50 h2, .intro h2 { color: #d69e2e; margin-bottom: 15px; }
-.border-4 { border: 3px solid #ecc94b; }
-.bg-white {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 40px;
-}
-.text-2xl { font-size: 1.8em; color: #d69e2e; margin-bottom: 10px; }
-.italic { font-style: italic; color: #666; margin-bottom: 20px; }
-.bg-blue-50 { background: #dbeafe; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-.bg-green-50 { background: #f0fff4; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-.bg-yellow-50 { background: #fef3c7; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-.bg-purple-50 { background: #f3e8ff; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-.bg-red-50 { background: #fee2e2; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-.bg-gray-50 { background: #f3f4f6; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-.font-bold { font-weight: bold; margin-bottom: 10px; font-size: 1.2em; }
-.list-disc { margin-left: 20px; }
-.list-decimal { margin-left: 20px; }
-li { margin-bottom: 8px; }
-.mb-8 { margin-bottom: 40px; }
-.mb-6 { margin-bottom: 30px; }
-.mb-4 { margin-bottom: 20px; }
-.mb-2 { margin-bottom: 10px; }
-.p-4, .p-6 { padding: 20px; }
-.rounded-lg { border-radius: 15px; }
-.space-y-1 > * + * { margin-top: 5px; }
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 2px solid #ddd;
-    color: #666;
-}
-@media (max-width: 768px) {
-    .container, .p-8 { padding: 20px; }
-    h1 { font-size: 2em; }
-}
-</style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ed8936;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #ed8936;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.4em;
+            color: #dd6b20;
+            margin-bottom: 5px;
+        }
+
+        header .tagline {
+            font-size: 1.1em;
+            color: #888;
+        }
+
+        /* Welcome & intro sections */
+        .welcome-section {
+            background: #fffaf0;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ed8936;
+        }
+
+        .welcome-section h2 {
+            color: #c05621;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .welcome-section p {
+            margin-bottom: 10px;
+        }
+
+        .task-list-overview {
+            background: white;
+            padding: 15px 15px 15px 30px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .task-list-overview li {
+            padding: 4px 0;
+        }
+
+        .how-to-section {
+            background: #ebf8ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .how-to-section h2 {
+            color: #2b6cb0;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .how-to-section p {
+            margin-bottom: 8px;
+        }
+
+        /* Task cards */
+        .task-card {
+            border: 4px solid #ed8936;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            background: white;
+        }
+
+        .task-card h2 {
+            font-size: 1.8em;
+            color: #c05621;
+            margin-bottom: 5px;
+        }
+
+        .task-card .task-subtitle {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .task-section {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .task-section h3 {
+            margin-bottom: 8px;
+            font-size: 1.15em;
+        }
+
+        .task-section ul, .task-section ol {
+            padding-left: 25px;
+        }
+
+        .task-section li {
+            padding: 3px 0;
+        }
+
+        .mission { background: #ebf8ff; }
+        .mission h3 { color: #2b6cb0; }
+
+        .tools { background: #f0fff4; }
+        .tools h3 { color: #276749; }
+
+        .steps { background: #fffff0; }
+        .steps h3 { color: #975a16; }
+
+        .tips { background: #faf5ff; }
+        .tips h3 { color: #6b46c1; }
+
+        .challenges { background: #fff5f5; }
+        .challenges h3 { color: #c53030; }
+
+        .showandtell { background: #f7fafc; }
+        .showandtell h3 { color: #4a5568; }
+
+        /* Keyboard shortcuts section */
+        .shortcuts-section {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .shortcuts-section h2 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+        }
+
+        .shortcut-item kbd {
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        /* Next level section */
+        .next-level {
+            background: #fff5f5;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 5px solid #e53e3e;
+            text-align: center;
+        }
+
+        .next-level h3 {
+            color: #c53030;
+            margin-bottom: 8px;
+        }
+
+        .next-level a {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px solid #ed8936;
+            color: #666;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: #ed8936;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover { text-decoration: underline; }
+
+        /* Print styles */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 20px; }
+            .task-card { page-break-inside: avoid; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            header h1 { font-size: 1.8em; }
+            .shortcut-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
-<a href="index.html" class="back-link">← Back to Course Home</a>
-<div class="p-8 max-w-4xl mx-auto bg-white">
-  <header class="text-center mb-8 border-b-4 border-yellow-600 pb-6">
-    <h1 class="text-4xl font-bold mb-2">Intermediate Tasks Booklet</h1>
-    <p class="text-2xl mb-4">Level Up Your Blender Skills</p>
-    <p class="text-lg text-gray-600">Build on Your Foundation!</p>
-  </header>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Course Home</a>
 
-  <section class="mb-8 bg-yellow-50 p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4">Welcome, Intermediate Sculptor!</h2>
-    <p class="mb-4">You've mastered the basics - great job! Now you're ready to combine those skills and learn new techniques. These tasks will challenge you and help you grow as a digital sculptor.</p>
-    
-    <div class="bg-white p-4 rounded-lg mt-4">
-      <h3 class="text-xl font-bold mb-2">In This Booklet:</h3>
-      <ul class="list-disc pl-6 space-y-2">
-        <li><strong>Task 3:</strong> Alien Pet - Creative creature design</li>
-        <li><strong>Task 5:</strong> Magic Cookie Jar - Decorative containers</li>
-        <li><strong>Task 6:</strong> Dinosaur Head - Prehistoric sculpting</li>
-        <li><strong>Task 8:</strong> Sea Creature - Underwater wonders</li>
-        <li><strong>Task 9:</strong> Superhero Mask - Hero identity design</li>
-        <li><strong>Task 10:</strong> Magic Tree - Enchanted nature</li>
-        <li><strong>Task 12:</strong> Dragon Egg - Mystical objects</li>
-        <li><strong>Task 14:</strong> Monster Cup - Character containers</li>
-        <li><strong>Task 17:</strong> Magical Gem - Crystal formations</li>
-        <li><strong>Task 20:</strong> Crazy Hat - Wild wearables</li>
-      </ul>
+        <header>
+            <h1>Intermediate Tasks Booklet</h1>
+            <p class="subtitle">Level Up Your Blender Skills</p>
+            <p class="tagline">Build on Your Foundation!</p>
+        </header>
+
+        <!-- Welcome -->
+        <div class="welcome-section">
+            <h2>Welcome, Intermediate Sculptor!</h2>
+            <p>You've mastered the basics &mdash; great job! Now you're ready to combine those skills and learn new techniques. These tasks will challenge you and help you grow as a digital sculptor.</p>
+            <div class="task-list-overview">
+                <strong>In This Booklet:</strong>
+                <ul>
+                    <li><strong>Task 3:</strong> Alien Pet &mdash; Creative creature design</li>
+                    <li><strong>Task 5:</strong> Magic Cookie Jar &mdash; Decorative containers</li>
+                    <li><strong>Task 6:</strong> Dinosaur Head &mdash; Prehistoric sculpting</li>
+                    <li><strong>Task 8:</strong> Sea Creature &mdash; Underwater wonders</li>
+                    <li><strong>Task 9:</strong> Superhero Mask &mdash; Hero identity design</li>
+                    <li><strong>Task 10:</strong> Magic Tree &mdash; Enchanted nature</li>
+                    <li><strong>Task 12:</strong> Dragon Egg &mdash; Mystical objects</li>
+                    <li><strong>Task 14:</strong> Monster Cup &mdash; Character containers</li>
+                    <li><strong>Task 17:</strong> Magical Gem &mdash; Crystal formations</li>
+                    <li><strong>Task 20:</strong> Crazy Hat &mdash; Wild wearables</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- How to use -->
+        <div class="how-to-section">
+            <h2>How to Use This Booklet</h2>
+            <p><strong>1. Pick what interests you</strong> &mdash; You don't have to do them in order</p>
+            <p><strong>2. Complete at least 3&ndash;4 tasks</strong> &mdash; This builds your intermediate skills</p>
+            <p><strong>3. It's okay to struggle</strong> &mdash; These are harder than beginner tasks</p>
+            <p><strong>4. Go back if needed</strong> &mdash; Review beginner tasks if you get stuck</p>
+            <p><strong>5. Help each other</strong> &mdash; Teaching others helps you learn too</p>
+        </div>
+
+        <!-- ===================== TASK 3 ===================== -->
+        <div class="task-card">
+            <h2>Task 3: Alien Pet!</h2>
+            <p class="task-subtitle">Your First Creature Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Design a friendly alien pet that's never been seen before! It can have any number of eyes, legs, or tentacles &mdash; let your imagination run wild!</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Combining multiple shapes</li>
+                    <li>Dynamic Topology (Dyntopo) for adding details</li>
+                    <li>Smoothing and texturing</li>
+                    <li>Creating unique features</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Create base body:</strong> Add &gt; Mesh &gt; UV Sphere for body. Enable Mirror Modifier for symmetry. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.25</li>
+                    <li><strong>Shape main form:</strong> Use <kbd>Grab</kbd> tool to pull body into alien shape. Use <kbd>Draw</kbd> tool to create muscle forms. <kbd>Smooth</kbd> tool to blend shapes. <kbd>Inflate</kbd> to add volume where needed</li>
+                    <li><strong>Add limbs/tentacles:</strong> <kbd>Snake Hook</kbd> to pull out limb shapes. <kbd>Grab</kbd> tool to position limbs. <kbd>Crease</kbd> to create joint areas. <kbd>Clay Strips</kbd> to build muscle definition</li>
+                    <li><strong>Create facial features:</strong> <kbd>Mask</kbd> tool to mark eye areas. <kbd>Snake Hook</kbd> to pull out eye stalks (if desired). <kbd>Draw</kbd> tool to shape mouth/sensory organs. <kbd>Smooth</kbd> to refine all features</li>
+                    <li><strong>Add alien details:</strong> <kbd>Clay Strips</kbd> to create skin texture. <kbd>Draw</kbd> tool to add patterns/markings. <kbd>Crease</kbd> to define important edges. <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Think about how your alien would move</li>
+                    <li>Make it look friendly &mdash; this is a pet!</li>
+                    <li>Try to make it different from Earth animals</li>
+                    <li>Give it a personality through its features</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add unusual textures to its skin</li>
+                    <li>Give it special features like glowing spots</li>
+                    <li>Create a unique way for it to eat or move</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us about your alien's special features</li>
+                    <li>Explain how it would interact with its owner</li>
+                    <li>Show your favourite detail you created</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 5 ===================== -->
+        <div class="task-card">
+            <h2>Task 5: Magic Cookie Jar!</h2>
+            <p class="task-subtitle">Magical Container Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Create a magical jar that could hold enchanted cookies! Add mysterious patterns, magical symbols, and cool decorations.</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Creating circular shapes</li>
+                    <li>Making repeating patterns</li>
+                    <li>Adding surface details</li>
+                    <li>Designing decorative elements</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Create jar body:</strong> Add &gt; Mesh &gt; Cylinder. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.20. Use <kbd>Grab</kbd> tool to shape the jar's profile &mdash; wider belly, narrower neck</li>
+                    <li><strong>Shape the lid:</strong> Add a separate UV Sphere. <kbd>Flatten</kbd> tool for the base. <kbd>Draw</kbd> tool to add a handle on top. <kbd>Smooth</kbd> to refine the shape</li>
+                    <li><strong>Add magical patterns:</strong> <kbd>Draw</kbd> tool to create pattern outlines around the sides. <kbd>Crease</kbd> tool to define sharp pattern edges. <kbd>Clay Strips</kbd> to build up raised designs</li>
+                    <li><strong>Create mysterious symbols:</strong> <kbd>Draw</kbd> tool for rune-like shapes. <kbd>Crease</kbd> for sharp detail. <kbd>Smooth</kbd> to blend edges where needed</li>
+                    <li><strong>Surface interest:</strong> <kbd>Clay Strips</kbd> for texture. <kbd>Scrape</kbd> tool for aged/worn areas. <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Think about how the lid fits</li>
+                    <li>Make patterns that go all the way around</li>
+                    <li>Add details that make it look magical</li>
+                    <li>Consider what kind of cookies it holds!</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add glowing runes or symbols</li>
+                    <li>Create a special locking mechanism</li>
+                    <li>Make it look ancient and mysterious</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Explain what makes your jar magical</li>
+                    <li>Show your favourite pattern</li>
+                    <li>Tell us what kind of cookies it holds</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 6 ===================== -->
+        <div class="task-card">
+            <h2>Task 6: Dinosaur Head!</h2>
+            <p class="task-subtitle">Prehistoric Creature Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Create an awesome dinosaur head! You can make it scary like a T-Rex, friendly like a Brachiosaurus, or invent your own species!</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Shaping strong features</li>
+                    <li>Creating scales and textures</li>
+                    <li>Making teeth and horns</li>
+                    <li>Adding character to eyes</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Basic head shape:</strong> Add &gt; Mesh &gt; UV Sphere. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.20. Use <kbd>Grab</kbd> tool to elongate into a head shape</li>
+                    <li><strong>Jaw and snout:</strong> <kbd>Grab</kbd> tool to pull out the snout. <kbd>Crease</kbd> to define the jaw line. <kbd>Draw</kbd> tool to build up the brow ridge</li>
+                    <li><strong>Eye sockets and nostrils:</strong> <kbd>Mask</kbd> tool to mark eye areas. <kbd>Draw</kbd> tool (subtract mode) to push in eye sockets. <kbd>Snake Hook</kbd> for nostril openings. <kbd>Smooth</kbd> to refine edges</li>
+                    <li><strong>Horns or crests:</strong> <kbd>Snake Hook</kbd> to pull out horn shapes. <kbd>Grab</kbd> to position and shape. <kbd>Pinch</kbd> tool to sharpen tips. <kbd>Smooth</kbd> to blend base into head</li>
+                    <li><strong>Scales and texture:</strong> <kbd>Clay Strips</kbd> with small brush for scale patterns. <kbd>Crease</kbd> between scales for definition. <kbd>Draw</kbd> tool for smaller detail scales</li>
+                    <li><strong>Teeth and details:</strong> <kbd>Snake Hook</kbd> to pull out tooth shapes. <kbd>Pinch</kbd> to sharpen points. <kbd>Draw</kbd> tool for gum line. <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Look at real dinosaur pictures for ideas</li>
+                    <li>Think about what your dino eats &mdash; herbivores have flat teeth, carnivores have sharp ones</li>
+                    <li>Make the scales different sizes &mdash; bigger on top, smaller near the mouth</li>
+                    <li>Give it some personality in its expression</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add unusual features like feathers</li>
+                    <li>Create a unique head crest</li>
+                    <li>Mix features from different dinosaurs</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us what kind of dinosaur you made</li>
+                    <li>Show how you made the scales</li>
+                    <li>Explain what makes your dino special</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 8 ===================== -->
+        <div class="task-card">
+            <h2>Task 8: Sea Creature!</h2>
+            <p class="task-subtitle">Underwater Wonder</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Design a creature that lives in the deepest parts of the ocean! It can be beautiful, strange, or a bit of both.</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Creating flowing shapes</li>
+                    <li>Making fins and tentacles</li>
+                    <li>Adding sea creature textures</li>
+                    <li>Designing bioluminescent features</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Main body shape:</strong> Add &gt; Mesh &gt; UV Sphere. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.20. Use <kbd>Grab</kbd> tool to create a flowing, streamlined body</li>
+                    <li><strong>Add fins, tentacles, or arms:</strong> <kbd>Snake Hook</kbd> to pull out fin shapes or tentacles. <kbd>Grab</kbd> to position and curve them. <kbd>Flatten</kbd> tool to make fins thin and flat. <kbd>Smooth</kbd> to create flowing shapes</li>
+                    <li><strong>Special features:</strong> <kbd>Draw</kbd> tool to create light organ bumps. <kbd>Inflate</kbd> for bulbous features like angler fish lures. <kbd>Snake Hook</kbd> for antennae or whiskers</li>
+                    <li><strong>Face and eyes:</strong> <kbd>Draw</kbd> tool to build up eye area. <kbd>Crease</kbd> to define mouth line. <kbd>Inflate</kbd> for large deep-sea eyes. <kbd>Smooth</kbd> to refine expression</li>
+                    <li><strong>Scales or patterns:</strong> <kbd>Clay Strips</kbd> for scale rows. <kbd>Draw</kbd> tool for stripe patterns. <kbd>Crease</kbd> for definition. <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Think about how it moves in water</li>
+                    <li>Deep sea creatures often have special lights</li>
+                    <li>Make shapes flow like they're underwater</li>
+                    <li>Consider how it catches its food</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add glowing spots or patterns</li>
+                    <li>Create transparent-looking parts</li>
+                    <li>Design unique hunting features</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Explain how your creature survives</li>
+                    <li>Show its special features</li>
+                    <li>Tell us about its underwater home</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 9 ===================== -->
+        <div class="task-card">
+            <h2>Task 9: Superhero Mask!</h2>
+            <p class="task-subtitle">Design Your Hero Identity</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Design an amazing superhero mask that shows off your hero's powers and personality!</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Symmetrical design with Mirror Modifier</li>
+                    <li>Creating dramatic shapes</li>
+                    <li>Adding heroic details</li>
+                    <li>Surface finishing techniques</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Base mask shape:</strong> Add &gt; Mesh &gt; UV Sphere. Switch to Edit Mode [Tab]. Cut in half and delete the back. Add Mirror Modifier for symmetry. Switch to Sculpt Mode</li>
+                    <li><strong>Shape the mask:</strong> <kbd>Grab</kbd> tool to shape around face contours. <kbd>Draw</kbd> tool to build up brow area. <kbd>Smooth</kbd> to create clean curves</li>
+                    <li><strong>Eye openings:</strong> <kbd>Mask</kbd> tool [M] to draw eye shapes. Invert mask [Cmd+I on Mac]. <kbd>Draw</kbd> tool (subtract) to push in eye openings. Clear mask [Alt+M]. <kbd>Crease</kbd> to define eye edges sharply</li>
+                    <li><strong>Heroic features:</strong> <kbd>Snake Hook</kbd> to pull out wing/horn shapes. <kbd>Draw</kbd> tool to create raised emblems. <kbd>Crease</kbd> for sharp heroic lines. <kbd>Clay Strips</kbd> to build up forehead crest</li>
+                    <li><strong>Surface details:</strong> <kbd>Draw</kbd> tool for panel lines. <kbd>Crease</kbd> for sharp edges. <kbd>Scrape</kbd> for battle damage (optional). <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Think about what powers your hero has</li>
+                    <li>The mask should match the hero's personality</li>
+                    <li>Sharp lines = tech hero, flowing curves = nature hero</li>
+                    <li>Add a symbol or emblem that represents the hero</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add retractable eye lenses</li>
+                    <li>Create a built-in communication device</li>
+                    <li>Design a mask that transforms</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us about your hero and their powers</li>
+                    <li>Show the special features of the mask</li>
+                    <li>Explain why you chose this design</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 10 ===================== -->
+        <div class="task-card">
+            <h2>Task 10: Magic Tree!</h2>
+            <p class="task-subtitle">Enchanted Nature</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Create an enchanted tree that could exist in a magical forest! Think twisted trunks, mysterious hollows, and magical details.</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Creating organic, twisting forms</li>
+                    <li>Making realistic bark textures</li>
+                    <li>Building branch structures</li>
+                    <li>Adding magical elements</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Create the trunk:</strong> Add &gt; Mesh &gt; Cylinder. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.20. Use <kbd>Grab</kbd> tool to twist and shape the trunk &mdash; make it gnarly and interesting</li>
+                    <li><strong>Add branches:</strong> <kbd>Snake Hook</kbd> to pull out main branch shapes. <kbd>Grab</kbd> to position and curve branches. <kbd>Pinch</kbd> to taper branch ends. <kbd>Smooth</kbd> to blend branches into trunk</li>
+                    <li><strong>Create bark texture:</strong> <kbd>Clay Strips</kbd> for bark ridges running vertically. <kbd>Crease</kbd> for deep bark cracks. <kbd>Draw</kbd> tool for smaller bark detail. <kbd>Scrape</kbd> for worn/smooth areas</li>
+                    <li><strong>Hollow and roots:</strong> <kbd>Draw</kbd> tool (subtract) to create a mysterious hollow. <kbd>Snake Hook</kbd> to pull out root shapes at the base. <kbd>Crease</kbd> to define root edges</li>
+                    <li><strong>Magical details:</strong> <kbd>Draw</kbd> tool to add glowing knots. <kbd>Inflate</kbd> for mysterious bumps or mushroom-like growths. <kbd>Snake Hook</kbd> for hanging vines. <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Real trees are never perfectly straight &mdash; add character!</li>
+                    <li>Roots should spread out wide at the base</li>
+                    <li>Think about what kind of magic lives in your tree</li>
+                    <li>A hollow or doorway adds mystery</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add a face hidden in the bark</li>
+                    <li>Create glowing fruits or flowers</li>
+                    <li>Make it look like it could walk</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us what kind of magic your tree has</li>
+                    <li>Show how you made the bark look real</li>
+                    <li>Explain what creature might live inside it</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 12 ===================== -->
+        <div class="task-card">
+            <h2>Task 12: Dragon Egg!</h2>
+            <p class="task-subtitle">Mystical Object Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Design a mysterious dragon egg! What kind of dragon is growing inside? The outside of the egg should give us clues!</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Creating smooth egg forms</li>
+                    <li>Adding scale-like surface patterns</li>
+                    <li>Making cracks and emerging features</li>
+                    <li>Surface detail techniques</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Basic egg shape:</strong> Add &gt; Mesh &gt; UV Sphere. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.15 (finer detail for egg). Use <kbd>Grab</kbd> tool to elongate into an egg &mdash; slightly pointy at one end</li>
+                    <li><strong>Scale pattern:</strong> <kbd>Clay Strips</kbd> with small brush to create overlapping scale shapes. Start from bottom, work up. <kbd>Crease</kbd> between scales for definition. Keep scales consistent in size</li>
+                    <li><strong>Add cracks (optional):</strong> <kbd>Draw</kbd> tool (subtract) to carve crack lines. <kbd>Crease</kbd> to deepen cracks. <kbd>Draw</kbd> tool to add raised edges along cracks</li>
+                    <li><strong>Emerging features:</strong> <kbd>Snake Hook</kbd> to pull out a small claw or snout from a crack. <kbd>Draw</kbd> tool to add glow-like raised areas. <kbd>Smooth</kbd> to blend naturally</li>
+                    <li><strong>Final surface:</strong> <kbd>Draw</kbd> tool for veiny patterns. <kbd>Inflate</kbd> for warm/pulsing spots. <kbd>Smooth</kbd> to polish smooth areas between scales</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Think about what colour and type of dragon is inside</li>
+                    <li>Scales should overlap like roof tiles</li>
+                    <li>A few cracks make it more exciting</li>
+                    <li>Maybe something is glowing from inside!</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add a baby dragon claw breaking through</li>
+                    <li>Create veins of magical energy across the surface</li>
+                    <li>Design a nest or stand for your egg</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us what kind of dragon is inside</li>
+                    <li>Show how you made the scale pattern</li>
+                    <li>Explain how close it is to hatching</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 14 ===================== -->
+        <div class="task-card">
+            <h2>Task 14: Monster Cup!</h2>
+            <p class="task-subtitle">Character Container Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Create a cup that looks like a monster! It should be fun, a bit scary, and still look like you could actually drink from it.</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Combining functional and character shapes</li>
+                    <li>Creating facial features on objects</li>
+                    <li>Handle design</li>
+                    <li>Surface texture and detail</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Basic cup shape:</strong> Add &gt; Mesh &gt; Cylinder. Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.20. Use <kbd>Grab</kbd> tool to shape the cup &mdash; wider at top, narrower base</li>
+                    <li><strong>Monster face:</strong> <kbd>Draw</kbd> tool to build up brow ridges. <kbd>Inflate</kbd> for bulging eyes. <kbd>Draw</kbd> (subtract) for eye sockets. <kbd>Snake Hook</kbd> to pull out horns or ears</li>
+                    <li><strong>Mouth and teeth:</strong> <kbd>Draw</kbd> tool to create lips around the rim. <kbd>Snake Hook</kbd> to pull out fang shapes from the rim. <kbd>Pinch</kbd> to sharpen tooth tips. <kbd>Crease</kbd> to define the mouth line</li>
+                    <li><strong>Handle:</strong> <kbd>Snake Hook</kbd> to pull out a handle shape (or a tail!). <kbd>Grab</kbd> to curve it into a usable shape. <kbd>Smooth</kbd> to make it comfortable-looking</li>
+                    <li><strong>Monster details:</strong> <kbd>Clay Strips</kbd> for bumpy monster skin. <kbd>Draw</kbd> tool for warts or spots. <kbd>Crease</kbd> for wrinkles. <kbd>Smooth</kbd> for final polish</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>The cup still needs to work as a cup &mdash; keep the inside hollow!</li>
+                    <li>Give your monster personality &mdash; friendly scary is best</li>
+                    <li>The handle could be a tail, arm, or tentacle</li>
+                    <li>Think about what it would feel like to hold</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add tiny monster arms hugging the cup</li>
+                    <li>Create a matching saucer monster</li>
+                    <li>Design a lid that looks like a monster hat</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us what your monster drinks</li>
+                    <li>Show the coolest feature</li>
+                    <li>Explain how you'd hold it without getting scared!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 17 ===================== -->
+        <div class="task-card">
+            <h2>Task 17: Magical Gem!</h2>
+            <p class="task-subtitle">Crystal Formation Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Craft a powerful magical crystal or gemstone! Think about what power it holds and how that shows on the outside.</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Creating geometric crystal shapes</li>
+                    <li>Making flat faceted surfaces</li>
+                    <li>Adding magical energy details</li>
+                    <li>Combining sharp and smooth forms</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Basic crystal shape:</strong> Add &gt; Mesh &gt; Ico Sphere (or Cone for a pointed crystal). Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.15. Use <kbd>Grab</kbd> tool to elongate into a crystal point</li>
+                    <li><strong>Facets and faces:</strong> <kbd>Flatten</kbd> tool to create flat crystal faces. <kbd>Crease</kbd> to define sharp edges between facets. <kbd>Pinch</kbd> to sharpen crystal ridges</li>
+                    <li><strong>Crystal cluster (optional):</strong> Add additional smaller shapes around the base. <kbd>Grab</kbd> to angle them outward. <kbd>Flatten</kbd> and <kbd>Crease</kbd> for facets on each one</li>
+                    <li><strong>Magical energy:</strong> <kbd>Draw</kbd> tool for energy veins running through the crystal. <kbd>Snake Hook</kbd> for wisps of magical energy. <kbd>Inflate</kbd> for glowing nodes at intersections</li>
+                    <li><strong>Polish:</strong> <kbd>Smooth</kbd> for crystal face surfaces (keep edges sharp!). <kbd>Crease</kbd> for any final edge definition. <kbd>Draw</kbd> for tiny imperfections that make it look real</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Real crystals have flat faces and sharp edges</li>
+                    <li>Think about what power your gem holds &mdash; fire? ice? time?</li>
+                    <li>Imperfections make crystals look more real</li>
+                    <li>A base or mount can make it look like a display piece</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Create a crystal cluster with many different-sized crystals</li>
+                    <li>Add an inclusion (something trapped inside)</li>
+                    <li>Design a magical staff or wand with your gem mounted in it</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us what power your gem holds</li>
+                    <li>Show how you made the crystal faces</li>
+                    <li>Explain where it was found</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== TASK 20 ===================== -->
+        <div class="task-card">
+            <h2>Task 20: Crazy Hat!</h2>
+            <p class="task-subtitle">Wild Wearable Design</p>
+
+            <div class="task-section mission">
+                <h3>&#127919; Your Mission</h3>
+                <p>Design the wildest, most creative hat you can imagine! It could be for a wizard, an alien king, a deep-sea explorer, or anyone you can think of.</p>
+            </div>
+
+            <div class="task-section tools">
+                <h3>&#128295; Tools You'll Learn</h3>
+                <ul>
+                    <li>Creating wearable proportions</li>
+                    <li>Building elaborate decorations</li>
+                    <li>Combining multiple design elements</li>
+                    <li>Advanced surface detailing</li>
+                </ul>
+            </div>
+
+            <div class="task-section steps">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Base hat shape:</strong> Add &gt; Mesh &gt; Cylinder (for the crown) and a flattened Torus or Cylinder (for the brim). Switch to Sculpt Mode [Tab]. Enable Dyntopo: Detail Size 0.20. Use <kbd>Grab</kbd> to shape the crown &mdash; tall, short, pointy, droopy &mdash; go wild!</li>
+                    <li><strong>Brim and structure:</strong> <kbd>Grab</kbd> tool to shape the brim &mdash; wavy, uneven, or dramatic. <kbd>Flatten</kbd> tool to keep brim surfaces clean. <kbd>Smooth</kbd> to blend brim into crown</li>
+                    <li><strong>Decorations:</strong> <kbd>Snake Hook</kbd> to pull out feathers, tentacles, or antlers. <kbd>Draw</kbd> tool for buckles, bands, and trim. <kbd>Clay Strips</kbd> for fabric folds and draping. <kbd>Crease</kbd> for stitching lines</li>
+                    <li><strong>Special features:</strong> <kbd>Inflate</kbd> for embedded gems or eyes. <kbd>Draw</kbd> tool for magical symbols. <kbd>Snake Hook</kbd> for dangling charms or chains</li>
+                    <li><strong>Final details:</strong> <kbd>Clay Strips</kbd> for fabric texture. <kbd>Scrape</kbd> for worn leather effect. <kbd>Crease</kbd> for sharp detail. <kbd>Smooth</kbd> for final polish on smooth areas</li>
+                </ol>
+            </div>
+
+            <div class="task-section tips">
+                <h3>&#128161; Hot Tips!</h3>
+                <ul>
+                    <li>Think about who would wear this hat</li>
+                    <li>Mix unexpected things &mdash; a top hat with tentacles? A crown with mushrooms?</li>
+                    <li>It should still look like it could sit on a head</li>
+                    <li>More details = more impressive &mdash; but don't forget to smooth!</li>
+                </ul>
+            </div>
+
+            <div class="task-section challenges">
+                <h3>&#127775; Extra Challenges</h3>
+                <ul>
+                    <li>Add a creature living in or on the hat</li>
+                    <li>Create moving parts (like flaps or wings)</li>
+                    <li>Design a hat that tells a story</li>
+                </ul>
+            </div>
+
+            <div class="task-section showandtell">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you're done, be ready to:</p>
+                <ul>
+                    <li>Tell us who would wear your hat</li>
+                    <li>Show your most creative feature</li>
+                    <li>Explain the story behind the design</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts -->
+        <div class="shortcuts-section">
+            <h2>Handy Keyboard Shortcuts (Mac)</h2>
+            <div class="shortcut-grid">
+                <div class="shortcut-item"><kbd>Tab</kbd> Switch between modes</div>
+                <div class="shortcut-item"><kbd>S</kbd> Scale</div>
+                <div class="shortcut-item"><kbd>G</kbd> Grab/Move</div>
+                <div class="shortcut-item"><kbd>R</kbd> Rotate</div>
+                <div class="shortcut-item"><kbd>Cmd+Z</kbd> Undo</div>
+                <div class="shortcut-item"><kbd>Cmd+S</kbd> Save</div>
+                <div class="shortcut-item"><kbd>F</kbd> Change brush size</div>
+                <div class="shortcut-item"><kbd>Shift+S</kbd> Smooth brush</div>
+                <div class="shortcut-item"><kbd>M</kbd> Mask tool</div>
+                <div class="shortcut-item"><kbd>Alt+M</kbd> Clear mask</div>
+                <div class="shortcut-item"><kbd>Cmd+I</kbd> Invert mask</div>
+                <div class="shortcut-item"><kbd>Numpad 1</kbd> Front view</div>
+            </div>
+            <p style="margin-top: 15px; text-align: center;">
+                <a href="shortcuts.html" style="color: #ed8936; font-weight: bold;">See the full Keyboard Shortcuts Guide &rarr;</a>
+            </p>
+        </div>
+
+        <!-- Next Level -->
+        <div class="next-level">
+            <h3>Ready for the Next Challenge?</h3>
+            <p>When you've completed 3&ndash;4 intermediate tasks and feel confident, head to the <a href="advanced.html">Advanced Tasks Booklet</a> for the ultimate challenge!</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Great work, intermediate sculptor! You're really growing!</strong></p>
+            <p>Remember: The best way to get better is to keep practising and experimenting.</p>
+            <p><a href="index.html">&larr; Back to Course Home</a></p>
+        </footer>
     </div>
-  </section>
-
-  <section class="mb-8 bg-blue-50 p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4">How to Use This Booklet</h2>
-    <div class="space-y-3">
-      <p><strong>1. Pick what interests you</strong> - You don't have to do them in order</p>
-      <p><strong>2. Complete at least 3-4 tasks</strong> - This builds your intermediate skills</p>
-      <p><strong>3. It's okay to struggle</strong> - These are harder than beginner tasks</p>
-      <p><strong>4. Go back if needed</strong> - Review beginner tasks if you get stuck</p>
-      <p><strong>5. Experiment!</strong> - Try new techniques and make mistakes</p>
-    </div>
-  </section>
-
-  <section class="mb-8 bg-purple-50 p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4">New Skills You'll Learn</h2>
-    <div class="bg-white p-4 rounded-lg">
-      <ul class="list-disc pl-6 space-y-1">
-        <li>Dynamic Topology for complex details</li>
-        <li>Combining multiple shapes and forms</li>
-        <li>Advanced texture creation</li>
-        <li>More complex symmetry work</li>
-        <li>Character and personality development</li>
-        <li>Creating patterns and repeating elements</li>
-      </ul>
-    </div>
-  </section>
-
-  <div class="page-break"></div>
-
-  <!-- ALL INTERMEDIATE TASKS FOLLOW (Tasks 3, 5, 6, 8, 9, 10, 12, 14, 17, 20) -->
-  
-  <!-- Each task formatted consistently as shown in previous examples -->
-  
-  <!-- After all tasks, include: -->
-  
-  <div class="page-break"></div>
-
-  <section class="mb-8 bg-blue-50 p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4">Essential Keyboard Shortcuts for Intermediate Work</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="bg-white p-4 rounded-lg">
-        <h3 class="font-bold mb-2">Sculpting:</h3>
-        <ul class="space-y-1">
-          <li><strong>D:</strong> Draw brush</li>
-          <li><strong>G:</strong> Grab brush</li>
-          <li><strong>M:</strong> Mask tool</li>
-          <li><strong>Ctrl+I:</strong> Invert mask</li>
-          <li><strong>F:</strong> Brush size</li>
-          <li><strong>Shift+F:</strong> Brush strength</li>
-        </ul>
-      </div>
-      
-      <div class="bg-white p-4 rounded-lg">
-        <h3 class="font-bold mb-2">Advanced Tools:</h3>
-        <ul class="space-y-1">
-          <li><strong>E:</strong> Extrude</li>
-          <li><strong>I:</strong> Inset</li>
-          <li><strong>Ctrl+R:</strong> Loop cut</li>
-          <li><strong>Shift+D:</strong> Duplicate</li>
-          <li><strong>Ctrl+J:</strong> Join objects</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="mb-8 bg-yellow-50 p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4">Congratulations!</h2>
-    <p class="mb-4">You've completed your intermediate tasks! You now have solid Blender sculpting skills.</p>
-    
-    <div class="bg-white p-4 rounded-lg">
-      <h3 class="font-bold mb-2">What You've Mastered:</h3>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>Complex creature and character design</li>
-        <li>Advanced texture and pattern creation</li>
-        <li>Combining multiple techniques</li>
-        <li>Working with organic and hard surfaces</li>
-        <li>Creating detailed, finished sculptures</li>
-      </ul>
-    </div>
-    
-    <div class="bg-green-100 p-4 rounded-lg mt-4">
-      <h3 class="font-bold mb-2">Ready for Advanced?</h3>
-      <p>When you've completed 3-4 intermediate tasks confidently, you're ready to tackle the Advanced Tasks Booklet!</p>
-    </div>
-  </section>
-
-  <footer class="mt-8 text-center text-sm text-gray-600 border-t-2 border-gray-300 pt-6">
-    <p class="font-bold text-lg mb-2">Excellent work! Your skills are really growing!</p>
-    <p>Keep challenging yourself and creating amazing sculptures!</p>
-  </footer>
-</div>
-
-<style>
-  @media print {
-    .page-break {
-      page-break-before: always;
-    }
-  }
-</style>
-</artArtifact>
 </body>
+</html>
