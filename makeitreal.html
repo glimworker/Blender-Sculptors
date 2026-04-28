@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make It Real - Blender Sculpture Design Course</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #9f7aea 0%, #6b46c1 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #6b46c1;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #6b46c1;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #553c9a;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.4em;
+            color: #6b46c1;
+            margin-bottom: 5px;
+        }
+
+        header .tagline {
+            font-size: 1.1em;
+            color: #888;
+        }
+
+        /* Intro sections */
+        .intro-section {
+            background: #faf5ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #6b46c1;
+        }
+
+        .intro-section h2 {
+            color: #553c9a;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .intro-section p {
+            margin-bottom: 10px;
+        }
+
+        .context-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        /* Phase cards */
+        .phase-card {
+            border: 4px solid #6b46c1;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            background: white;
+        }
+
+        .phase-card h2 {
+            font-size: 1.8em;
+            color: #553c9a;
+            margin-bottom: 5px;
+        }
+
+        .phase-card .phase-subtitle {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .phase-section {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .phase-section h3 {
+            margin-bottom: 8px;
+            font-size: 1.15em;
+        }
+
+        .phase-section ul, .phase-section ol {
+            padding-left: 25px;
+        }
+
+        .phase-section li {
+            padding: 3px 0;
+        }
+
+        .phase-section li ul {
+            margin-top: 5px;
+        }
+
+        .why { background: #ebf8ff; }
+        .why h3 { color: #2b6cb0; }
+
+        .do { background: #fffff0; }
+        .do h3 { color: #975a16; }
+
+        .detail { background: #f0fff4; }
+        .detail h3 { color: #276749; }
+
+        .tips { background: #faf5ff; }
+        .tips h3 { color: #6b46c1; }
+
+        .warning { background: #fff5f5; }
+        .warning h3 { color: #c53030; }
+
+        .result { background: #f7fafc; }
+        .result h3 { color: #4a5568; }
+
+        kbd {
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        /* Material reference table */
+        .material-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        .material-table th {
+            background: #6b46c1;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .material-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .material-table tr:nth-child(even) {
+            background: #faf5ff;
+        }
+
+        /* Shortcuts section */
+        .shortcuts-section {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .shortcuts-section h2 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+        }
+
+        /* Big question callout */
+        .big-question {
+            background: linear-gradient(135deg, #faf5ff 0%, #ebf8ff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 3px dashed #6b46c1;
+            text-align: center;
+        }
+
+        .big-question h2 {
+            color: #553c9a;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .big-question p {
+            font-size: 1.1em;
+            color: #4a5568;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px solid #6b46c1;
+            color: #666;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: #6b46c1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover { text-decoration: underline; }
+
+        /* Print */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 20px; }
+            .phase-card { page-break-inside: avoid; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            header h1 { font-size: 1.8em; }
+            .shortcut-grid { grid-template-columns: 1fr; }
+            .material-table { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Course Home</a>
+
+        <header>
+            <h1>Make It Real</h1>
+            <p class="subtitle">Materials, Lighting &amp; Rendering</p>
+            <p class="tagline">Turn your sculpture into a finished image</p>
+        </header>
+
+        <!-- Intro -->
+        <div class="intro-section">
+            <h2>What This Guide Is For</h2>
+            <p>You've learned how to <em>shape</em> things in Blender. Now you'll learn how to make them <em>look real</em>.</p>
+            <p>This guide walks you through three finishing steps: giving your object a material (what it's made of), lighting it properly, and rendering a final image. We'll use a sphere as our subject &mdash; but everything here works on any sculpture you've made.</p>
+            <div class="context-box">
+                <strong>By the end of this guide you'll be able to:</strong>
+                <ul style="padding-left: 25px; margin-top: 8px;">
+                    <li>Apply materials that look like real surfaces &mdash; shiny, matte, metallic, rough</li>
+                    <li>Set up lighting that shows off your sculpture's form</li>
+                    <li>Render a high-quality image you can print or share</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Big question -->
+        <div class="big-question">
+            <h2>The Question</h2>
+            <p>You're about to model one of the balls you analysed. How perfect can you make it look?<br>
+            A digital sphere is just flat faces pretending to be curved. Can you make the eye stop noticing?</p>
+        </div>
+
+        <!-- ===================== PHASE 1: SMOOTH SHADING ===================== -->
+        <div class="phase-card">
+            <h2>Phase 1: Make It Smooth</h2>
+            <p class="phase-subtitle">Before materials or lighting &mdash; fix the surface</p>
+
+            <div class="phase-section why">
+                <h3>&#128161; Why This Matters</h3>
+                <p>Every object in Blender is made of flat faces. On a sphere, you can see the facets unless you tell Blender to smooth them. This is the single biggest jump in realism.</p>
+            </div>
+
+            <div class="phase-section do">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Start with a good sphere:</strong> Add &gt; Mesh &gt; UV Sphere. In the bottom-left popup, increase Segments to 64 and Rings to 32 (more faces = smoother result)</li>
+                    <li><strong>Apply Smooth Shading:</strong> Right-click the sphere &gt; <strong>Shade Smooth</strong>. The facets disappear instantly</li>
+                    <li><strong>Optional &mdash; Subdivision Surface modifier:</strong> In Properties panel &gt; Modifiers (wrench icon) &gt; Add Modifier &gt; <strong>Subdivision Surface</strong>. Set Viewport level to 2, Render level to 3. This mathematically smooths the geometry further</li>
+                    <li><strong>Check your work:</strong> Orbit around the sphere. Look at the silhouette edge &mdash; is it perfectly smooth? If you see any bumps, increase subdivision</li>
+                </ol>
+            </div>
+
+            <div class="phase-section tips">
+                <h3>&#9888;&#65039; Common Mistake</h3>
+                <p>If Shade Smooth makes your sculpted object look weird or blobby, try: Right-click &gt; <strong>Shade Auto Smooth</strong> instead. This smooths curves but keeps intentional hard edges sharp. Perfect for objects that have both smooth surfaces and crisp details.</p>
+            </div>
+        </div>
+
+        <!-- ===================== PHASE 2: MATERIALS ===================== -->
+        <div class="phase-card">
+            <h2>Phase 2: Give It a Material</h2>
+            <p class="phase-subtitle">What is your object made of?</p>
+
+            <div class="phase-section why">
+                <h3>&#128161; Why This Matters</h3>
+                <p>A material tells Blender what the surface looks like: its colour, whether it's shiny or matte, rough or smooth, metallic or plastic. Without a material, everything is the same boring grey.</p>
+            </div>
+
+            <div class="phase-section do">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Select your object</strong> and go to the <strong>Material Properties</strong> tab (the sphere icon in the Properties panel on the right)</li>
+                    <li><strong>Click "New"</strong> to create a new material. Give it a name that makes sense (e.g. "Red Leather", "Chrome", "Tennis Ball Felt")</li>
+                    <li><strong>Switch viewport to Material Preview mode:</strong> Click the third sphere icon in the header bar (or press <kbd>Z</kbd> and select Material Preview). Now you can see your material live</li>
+                    <li><strong>Set Base Color:</strong> Click the white rectangle next to "Base Color" and pick your colour. For realistic objects, avoid pure white or pure black &mdash; real things are always slightly off</li>
+                    <li><strong>Set Roughness:</strong> This is the big one.
+                        <ul>
+                            <li><strong>0.0</strong> = perfect mirror (chrome, wet surface)</li>
+                            <li><strong>0.3&ndash;0.5</strong> = slightly shiny (plastic, polished wood, new football)</li>
+                            <li><strong>0.7&ndash;0.9</strong> = matte/rough (chalk, concrete, old tennis ball)</li>
+                            <li><strong>1.0</strong> = completely matte (no reflections at all)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Set Metallic:</strong>
+                        <ul>
+                            <li><strong>0.0</strong> = non-metal (plastic, rubber, leather, fabric, wood &mdash; most things)</li>
+                            <li><strong>1.0</strong> = metal (steel, gold, aluminium, chrome)</li>
+                            <li>There's no in-between in real life &mdash; something either is or isn't metal</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="phase-section detail">
+                <h3>&#127767;&#65039; Quick Material Recipes</h3>
+                <table class="material-table">
+                    <thead>
+                        <tr>
+                            <th>Surface</th>
+                            <th>Base Color</th>
+                            <th>Roughness</th>
+                            <th>Metallic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Football (new)</td>
+                            <td>White or panel colours</td>
+                            <td>0.4</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Tennis ball</td>
+                            <td>Yellow-green</td>
+                            <td>0.85</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Basketball</td>
+                            <td>Orange-brown</td>
+                            <td>0.65</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Chrome ball bearing</td>
+                            <td>Light grey</td>
+                            <td>0.05</td>
+                            <td>1.0</td>
+                        </tr>
+                        <tr>
+                            <td>Rubber ball</td>
+                            <td>Any bright colour</td>
+                            <td>0.7</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Bowling ball</td>
+                            <td>Dark colour</td>
+                            <td>0.15</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Golf ball</td>
+                            <td>Off-white</td>
+                            <td>0.5</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Marble</td>
+                            <td>Off-white/cream</td>
+                            <td>0.25</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Clay (unfired)</td>
+                            <td>Terracotta/earth</td>
+                            <td>0.9</td>
+                            <td>0.0</td>
+                        </tr>
+                        <tr>
+                            <td>Polished clay/dorodango</td>
+                            <td>Dark earth</td>
+                            <td>0.1</td>
+                            <td>0.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="phase-section tips">
+                <h3>&#128161; Pro Tips</h3>
+                <ul>
+                    <li><strong>Subsurface Scattering</strong> (under the material settings) makes things look slightly translucent &mdash; useful for wax, skin, or anything light passes through slightly. Try a value of 0.1&ndash;0.3 with a warm colour</li>
+                    <li><strong>Specular</strong> controls how bright the shiny highlight is. Default 0.5 is fine for most things. Lower it for very soft materials like cloth</li>
+                    <li>Zoom in close and orbit while adjusting. Small changes in roughness make a big visual difference</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== PHASE 3: LIGHTING ===================== -->
+        <div class="phase-card">
+            <h2>Phase 3: Light It</h2>
+            <p class="phase-subtitle">Good lighting is the difference between amateur and professional</p>
+
+            <div class="phase-section why">
+                <h3>&#128161; Why This Matters</h3>
+                <p>Lighting reveals form. A perfectly modelled sphere with bad lighting looks flat and boring. Good lighting shows every curve, every subtle surface detail, and creates mood.</p>
+            </div>
+
+            <div class="phase-section do">
+                <h3>&#128221; Option A: HDRI Environment Lighting (Easiest &amp; Best Looking)</h3>
+                <p>An HDRI is a 360-degree photograph of a real environment. Blender uses it to light your object as if it were actually sitting in that place.</p>
+                <ol>
+                    <li>Go to <strong>World Properties</strong> (the globe icon in Properties panel)</li>
+                    <li>Click the yellow dot next to "Color" and select <strong>Environment Texture</strong></li>
+                    <li>Click <strong>Open</strong> and load an HDRI file. Free HDRIs available at <strong>polyhaven.com</strong> &mdash; download any you like (try "studio small" for a clean product look, or "outdoor" for natural lighting)</li>
+                    <li>Switch viewport to <strong>Material Preview</strong> mode (<kbd>Z</kbd> &gt; Material Preview) to see the result live</li>
+                    <li>Rotate the HDRI if needed: in World Properties, add a <strong>Mapping</strong> node and adjust the Z Rotation to move the light source around your object</li>
+                </ol>
+            </div>
+
+            <div class="phase-section do">
+                <h3>&#128221; Option B: Three-Point Lighting (More Control)</h3>
+                <p>The classic photography setup. Three lights, each doing a specific job.</p>
+                <ol>
+                    <li><strong>Delete the default light</strong> (select it, press <kbd>X</kbd>)</li>
+                    <li><strong>Key Light (main light):</strong> Add &gt; Light &gt; Area Light. Position it above and to the left of your object at roughly 45 degrees. Set Power to around 100&ndash;200W. This is your main light source</li>
+                    <li><strong>Fill Light (softens shadows):</strong> Add another Area Light. Position it to the right, slightly lower. Set Power to about half the key light (50&ndash;100W). This fills in the dark shadows so they're not pure black</li>
+                    <li><strong>Rim Light (separates from background):</strong> Add a third Area Light behind the object, pointing toward the camera. Set Power similar to the fill. This creates a bright edge that makes the object "pop" off the background</li>
+                    <li><strong>Adjust to taste:</strong> Move lights around, change their power. Use Material Preview to see changes live</li>
+                </ol>
+            </div>
+
+            <div class="phase-section detail">
+                <h3>&#127912; Light Types Explained</h3>
+                <ul>
+                    <li><strong>Area Light:</strong> Soft, realistic shadows. Best for most situations. The bigger you scale it, the softer the shadows</li>
+                    <li><strong>Point Light:</strong> Like a bare bulb &mdash; light goes in all directions. Harder shadows</li>
+                    <li><strong>Sun Light:</strong> Parallel rays like actual sunlight. Good for outdoor scenes. Rotation matters, position doesn't</li>
+                    <li><strong>Spot Light:</strong> Focused cone of light. Good for dramatic, focused illumination</li>
+                </ul>
+            </div>
+
+            <div class="phase-section tips">
+                <h3>&#128161; Pro Tips</h3>
+                <ul>
+                    <li>For a clean "product shot" look: one HDRI environment + one extra area light for a highlight</li>
+                    <li>If shadows are too harsh, make your area lights bigger (scale them up)</li>
+                    <li>A slightly coloured light adds realism &mdash; try a very faint warm yellow for the key light</li>
+                    <li>Dark background + rim light = dramatic. Light background + soft fill = clean and modern</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== PHASE 4: CAMERA & RENDER ===================== -->
+        <div class="phase-card">
+            <h2>Phase 4: Render It</h2>
+            <p class="phase-subtitle">Produce your final image</p>
+
+            <div class="phase-section why">
+                <h3>&#128161; Why This Matters</h3>
+                <p>Rendering takes everything &mdash; your model, material, and lighting &mdash; and calculates a final image. It's the difference between a preview and a finished photograph.</p>
+            </div>
+
+            <div class="phase-section do">
+                <h3>&#128221; Step by Step</h3>
+                <ol>
+                    <li><strong>Position your camera:</strong> Select the Camera object. Press <kbd>Numpad 0</kbd> to see through the camera. Use <kbd>G</kbd> then middle-mouse to fly it into position. Or: select your object, then <kbd>Numpad .</kbd> to centre it, then <kbd>Cmd+Alt+Numpad 0</kbd> to snap the camera to your current view</li>
+                    <li><strong>Choose your render engine:</strong> In <strong>Render Properties</strong> (camera icon):
+                        <ul>
+                            <li><strong>EEVEE</strong> &mdash; Fast, looks good, great for quick results. Use this first</li>
+                            <li><strong>Cycles</strong> &mdash; Slower but physically accurate. More realistic reflections, shadows, and light. Use this for your final "best" render</li>
+                        </ul>
+                    </li>
+                    <li><strong>Set resolution:</strong> In <strong>Output Properties</strong> (printer icon), set Resolution X: 1920, Y: 1080 (or 1080 x 1080 for a square image). Set % to 100</li>
+                    <li><strong>Render!</strong> Press <kbd>F12</kbd> (or Render &gt; Render Image). Wait for it to finish</li>
+                    <li><strong>Save the image:</strong> In the render window: Image &gt; Save As. Choose PNG format. Pick a sensible filename and location</li>
+                </ol>
+            </div>
+
+            <div class="phase-section detail">
+                <h3>&#9881;&#65039; Render Settings That Matter</h3>
+                <ul>
+                    <li><strong>EEVEE tips:</strong> Turn on Screen Space Reflections (Render Properties &gt; Screen Space Reflections &gt; tick the box). Turn on Ambient Occlusion for subtle shadow in crevices. These two settings massively improve EEVEE quality</li>
+                    <li><strong>Cycles tips:</strong> Set Samples to 128 for a test render, 512&ndash;1024 for a final image. Enable Denoising (Render Properties &gt; Denoising &gt; tick) &mdash; this smooths out grain and lets you use fewer samples</li>
+                    <li><strong>Background:</strong> For a clean white background, go to World Properties and set the colour to white. For a transparent background (just the object, no background), go to Render Properties &gt; Film &gt; tick <strong>Transparent</strong>, then save as PNG (which supports transparency)</li>
+                </ul>
+            </div>
+
+            <div class="phase-section warning">
+                <h3>&#9888;&#65039; Watch Out</h3>
+                <ul>
+                    <li>Cycles renders can take several minutes &mdash; be patient, especially on older machines</li>
+                    <li>If your render is completely black, you probably forgot to add lights (or your camera is inside the object!)</li>
+                    <li>If it looks nothing like the viewport, make sure you're in Material Preview mode when setting up &mdash; Solid mode doesn't show materials or lighting</li>
+                    <li>Save your .blend file before rendering. Always</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===================== PUTTING IT ALL TOGETHER ===================== -->
+        <div class="phase-card">
+            <h2>Your Challenge: The Perfect Ball</h2>
+            <p class="phase-subtitle">Apply everything above to one task</p>
+
+            <div class="phase-section why">
+                <h3>&#127919; The Task</h3>
+                <p>Model the ball you analysed. Make it look as real as possible. Produce a rendered image that could fool someone into thinking it's a photograph.</p>
+            </div>
+
+            <div class="phase-section do">
+                <h3>&#128221; Workflow</h3>
+                <ol>
+                    <li><strong>Research:</strong> Look at your ball closely. What is the surface actually like? Shiny? Textured? Are there seams, stitching, dimples, panels? Write down what you see</li>
+                    <li><strong>Model:</strong> Create your sphere. Add subdivision. Apply Shade Smooth. If your ball has texture details (stitching, dimples), sculpt them using tools from the earlier tasks</li>
+                    <li><strong>Material:</strong> Set up a material that matches. Use the recipes table above as a starting point, then adjust. Compare your screen to the real ball constantly</li>
+                    <li><strong>Light:</strong> Choose HDRI or three-point. Match the kind of lighting you'd see in a real photo of your ball</li>
+                    <li><strong>Camera:</strong> Frame it well. Try different angles. A slightly low angle with the ball filling most of the frame often works best</li>
+                    <li><strong>Render:</strong> Do a quick EEVEE render first to check everything. Then switch to Cycles for your final image</li>
+                    <li><strong>Evaluate:</strong> Hold the render next to a photo of the real ball. What's the gap? Could you close it further?</li>
+                </ol>
+            </div>
+
+            <div class="phase-section result">
+                <h3>&#10024; Show &amp; Tell</h3>
+                <p>When you present your rendered ball, be ready to:</p>
+                <ul>
+                    <li>Show the real ball next to your render &mdash; how close did you get?</li>
+                    <li>Explain what material settings you used and why</li>
+                    <li>Describe what was hardest to get right</li>
+                    <li>Answer the big question: <em>is your digital sphere a perfect sphere?</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts -->
+        <div class="shortcuts-section">
+            <h2>Key Shortcuts for This Guide (Mac)</h2>
+            <div class="shortcut-grid">
+                <div class="shortcut-item"><kbd>Z</kbd> Shading mode pie menu</div>
+                <div class="shortcut-item"><kbd>F12</kbd> Render image</div>
+                <div class="shortcut-item"><kbd>Numpad 0</kbd> Camera view</div>
+                <div class="shortcut-item"><kbd>Cmd+Alt+0</kbd> Snap camera to view</div>
+                <div class="shortcut-item"><kbd>Numpad .</kbd> Centre selected object</div>
+                <div class="shortcut-item"><kbd>G</kbd> Move/grab</div>
+                <div class="shortcut-item"><kbd>Cmd+Z</kbd> Undo</div>
+                <div class="shortcut-item"><kbd>Cmd+S</kbd> Save</div>
+            </div>
+            <p style="margin-top: 15px; text-align: center;">
+                <a href="shortcuts.html" style="color: #6b46c1; font-weight: bold;">See the full Keyboard Shortcuts Guide &rarr;</a>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Now your sculptures don't just have shape &mdash; they have presence.</strong></p>
+            <p>This is where digital meets real. How close can you get?</p>
+            <p><a href="index.html">&larr; Back to Course Home</a></p>
+        </footer>
+    </div>
+</body>
+</html>
